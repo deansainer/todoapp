@@ -1,3 +1,5 @@
+{% extends 'todoapp/base.html' %}
+
 {% block content %}
 
 <form method="POST" action="/">
@@ -7,9 +9,10 @@
 </form>
 
 {% for task in tasks %}
-    <div>
-        <p>{{task.title}}</p>
-    </div>
+    <ul class="list-group">
+  <li class="list-group-item"><h2>{{task}}</h2> {{task.created_at}}</li>
+</ul>
 {% endfor %}
 
 {% endblock %}
+
