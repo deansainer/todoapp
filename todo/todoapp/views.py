@@ -1,9 +1,17 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
+from .forms import *
 
 
 def index(request):
     tasks = Task.objects.all()
-    return render(request, 'todoapp/todolist.html', context={'tasks': tasks})
+    form = TaskForm()
+    if request.method=='POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/')
+
+    return render(request, 'todoapp/todolist.html', context={'tasks': tasks, 'form': form})
 
