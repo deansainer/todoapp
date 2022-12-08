@@ -11,6 +11,7 @@
 {% for task in tasks %}
     <ul class="list-group">
   <li class="list-group-item"><h2>{{task}}</h2> {{task.created_at}}</li>
+        <a href="{% url 'delete_task_url' task.id %}">Delete</a>
 </ul>
 {% endfor %}
 
